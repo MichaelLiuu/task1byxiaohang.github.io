@@ -1,55 +1,73 @@
+def generate_christmas_html():
+    return '''
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Your Name - Personal Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <title>圣诞节快乐！</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            color: green;
+            text-align: center;
+            padding: 50px;
+            background-image: url('https://example.com/christmas-background.jpg');
+            background-size: cover;
+        }
+
+        @keyframes snow {
+            0% {transform: translateY(0px);}
+            100% {transform: translateY(500px);}
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            color: #ffffff;
+            opacity: 0.9;
+            font-size: 24px;
+            animation-name: snow;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <h1>Your Name</h1>
-        <nav>
-            <ul>
-                <li><a href="#biography">Biography</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1>圣诞节快乐！</h1>
+    <p>祝您和您的家人节日快乐！</p>
+    <audio autoplay loop>
+        <source src="https://example.com/christmas-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationDuration = 5 + Math.random() * 10 + 's';
+            snowflake.style.opacity = Math.random();
+            snowflake.style.fontSize = 10 + Math.random() * 30 + 'px';
+            document.body.appendChild(snowflake);
 
-    <!-- Main sections -->
-    <main>
-        <!-- Biography Section -->
-        <section id="biography">
-            <h2>Biography</h2>
-            <!-- Content here -->
-        </section>
+            setTimeout(() => {
+                snowflake.remove();
+            }, 15000);
+        }
 
-        <!-- Resume Section -->
-        <section id="resume">
-            <h2>Resume</h2>
-            <!-- Content here -->
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact</h2>
-            <!-- Contact form -->
-        </section>
-    </main>
-
-    <!-- Futuristic Interactive 3D Background -->
-    <div id="three-js-background"></div>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2040 Your Name. All rights reserved.</p>
-    </footer>
-
-    <script src="scripts.js"></script>
+        setInterval(createSnowflake, 200);
+    </script>
 </body>
 </html>
+    '''
+
+def save_html_file(content, file_name="christmas_greeting.html"):
+    with open(file_name, 'w') as file:
+        file.write(content)
+    print(f"圣诞节主题页面已保存为 {file_name}")
+
+# 生成 HTML 页面
+html_content = generate_christmas_html()
+# 保存到文件
+save_html_file(html_content)
